@@ -52,7 +52,7 @@ const userSchema = new mongoose.Schema({
 //before saving if there is any modification in password encrpt it
 userSchema.pre("save",async function(next){
     if(!this.isModified("password")) return next();
-    this.password=bcrypt.hash(this.password,10 /*rounds*/)
+    this.password=await bcrypt.hash(this.password,10 /*rounds*/)
     next()
 })
 
